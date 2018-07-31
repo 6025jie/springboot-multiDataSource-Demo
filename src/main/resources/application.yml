@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    mysql:
+      username: root
+      url: jdbc:mysql://192.168.1.1:3306/testDb?characterEncoding=utf8&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      password: 123456
+      initial-size: 5
+      max-idle: 10
+      min-idle: 5
+      max-active: 50
+      log-abandoned: true
+      remove-abandoned: true
+      remove-abandoned-timeout: 180
+      max-wait: 10000
+      validation-query: select 1
+      test-on-borrow: true
+      test-while-idle: true
+      min-evictable-idle-time-millis: 600000
+      time-between-eviction-runs-millis: 300000
+    sqlserver:
+      username: sa
+      url: jdbc:sqlserver://127.0.0.1;DatabaseName=testDb
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      password: 123456
+      initial-size: 5
+      max-idle: 10
+      min-idle: 5
+      max-active: 50
+      log-abandoned: true
+      remove-abandoned: true
+      remove-abandoned-timeout: 180
+      max-wait: 10000
+      validation-query: select 1
+      test-on-borrow: true
+      test-while-idle: true
+      min-evictable-idle-time-millis: 600000
+      time-between-eviction-runs-millis: 300000
+  devtools:
+    restart:
+      enable: false
+server:
+  port: 8082
+logging:
+  level:
+    com:
+      fpi: TRACE

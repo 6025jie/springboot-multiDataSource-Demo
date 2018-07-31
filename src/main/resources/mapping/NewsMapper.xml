@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simple.multiDataSource.mapper.NewsMapper" >
+
+  <resultMap id="BaseResultMap" type="com.simple.multiDataSource.model.News" >
+    <result column="newsid" property="newsId" jdbcType="VARCHAR" />
+    <result column="newstitle" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="classename" property="className" jdbcType="VARCHAR" />
+    <result column="creattime" property="createTime" jdbcType="DATE" />
+  </resultMap>
+  
+  <select id="getNewsList" resultMap="BaseResultMap">
+	    select a.newsid,a.newstitle,'' as content,b.classename,a.creattime
+	    from news a,news_class b where a.classid=b.classid and b.classid=#{classid}
+	    order by a.creattime desc
+  </select>
+  
+  <select id="getTopNewsList" resultMap="BaseResultMap">
+	    select top ${top} a.newsid,a.newstitle,'' as content,b.classename,a.creattime
+	    from news a,news_class b where a.classid=b.classid and b.classid=#{classid}
+	    order by a.creattime desc
+  </select>
+  
+  <select id="getClassId" resultType="java.lang.String">
+	select top 1 classid from news_class where classcname=#{className}
+  </select>
+  
+  <select id="getNewsByNewsId" resultMap="BaseResultMap">
+  	select a.newsid,a.newstitle,a.content,b.classename,a.creattime
+	    from news a,news_class b where a.classid=b.classid and a.newsid=#{newsid}
+  </select>
+  
+</mapper>

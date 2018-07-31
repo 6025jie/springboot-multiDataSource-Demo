@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simple.multiDataSource.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.simple.multiDataSource.model.UserInfo" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="work_detail" property="workDetail" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="lastupdate_time" property="lastupdateTime" jdbcType="DATE" />
+  </resultMap>
+  
+  <select id="queryList" resultMap="BaseResultMap">
+    select * from p_userinfo where (name like concat(concat("%",#{queryStr}),"%") or job like concat(concat("%",#{queryStr}),"%")) 
+      order by id
+  </select>
+</mapper>
