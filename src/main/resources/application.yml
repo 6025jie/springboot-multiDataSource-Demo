@@ -41,7 +41,3 @@ spring:
       enable: false
 server:
   port: 8082
-logging:
-  level:
-    com:
-      fpi: TRACE
