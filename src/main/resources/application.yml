@@ -39,5 +39,8 @@ spring:
   devtools:
     restart:
       enable: false
+mapper:
+  mappers: com.simple.multiDataSource.SimpleMapper
+  not-empty: false      
 server:
   port: 8082
